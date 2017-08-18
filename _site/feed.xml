@@ -1,0 +1,533 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-08-17T10:32:39-04:00</updated><id>http://localhost:4000/</id><title type="html">An Unexpected Journey</title><subtitle>A Journey Through Codes
+</subtitle><entry><title type="html">The Power of Bind method in Javascript</title><link href="http://localhost:4000/2017/08/17/the_power_of_bind_method_in_javascript/" rel="alternate" type="text/html" title="The Power of Bind method in Javascript" /><published>2017-08-17T04:28:41-04:00</published><updated>2017-08-17T04:28:41-04:00</updated><id>http://localhost:4000/2017/08/17/the_power_of_bind_method_in_javascript</id><content type="html" xml:base="http://localhost:4000/2017/08/17/the_power_of_bind_method_in_javascript/">&lt;p&gt;During the course of coding the final project using React framework, I found myself using ‘bind’ quite a few times. Wherever I have click/hover actions, I would subconsciously/automatically write something along the line of:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;this.handleClickCallback = this.handleClickCallback.bind(this);
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;When instructor asked me why did I used bind, my mind went into panick mode and I utterred something like: so when user clicks on the button and this function will be used later??? If it’s not bound, then the button doesn’t work???  All the question marks are not for dramatic effect, I have been using the method though my understanding was only skin deep… Here is a refresher on bind() in the context of React &amp;amp; ES6.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;what is this???&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;‘this’ is a powerful word in Javascript. Everything in Javascript is an object including a function.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;The value of this, when used in a function, is the object that “owns” the function. &lt;a href=&quot;https://www.w3schools.com/js/js_function_invocation.asp&quot;&gt;source&lt;/a&gt;&lt;/p&gt;
+
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;strong&gt;bound to ‘this’&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;‘this’ could refer to different objects as the scopes change.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;The simplest use of bind() is to make a function that, no matter how it is called, is called with a particular this value. [source]https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind)&lt;/p&gt;
+
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;strong&gt;something borrowed&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;In the context of React written in ES6 syntax, when the component is instantiated from the React library, ‘this’ is referred to the component itself and the event handler method is usually declared inside the classs.  The buttons, links or other non-React sources are the objects being clicked on, hovered over, etc.   Since class methods are not bound automatically, to get access to the states &amp;amp; props, we have to bind this.handleClickCallback and pass it to onClick explicitly, otherwise ‘this’ will be undefined.&lt;/p&gt;
+
+&lt;p&gt;It is recommended to do the binding in constructor where it will be called once:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;
+  constructor() {
+    super()
+    this.handleClick = this.handleClickCallback.bind(this)  
+  }
+	&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Rather than in render() where it gets called every time the component re-renders:
+```
+  render() {
+return &amp;lt;button onClick={this.handleClickCallback.bind(this)}&amp;gt;Click me!&amp;lt;/button&amp;gt;   }
+```
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://facebook.github.io/react/docs/handling-events.html&quot;&gt;source 1&lt;/a&gt;
+&lt;a href=&quot;http://reactkungfu.com/2015/07/why-and-how-to-bind-methods-in-your-react-component-classes/&quot;&gt;source 2&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;The above explanation is still only skin deep because skin has multiple layers. Learning continues…&lt;/p&gt;</content><author><name></name></author><summary type="html">During the course of coding the final project using React framework, I found myself using ‘bind’ quite a few times. Wherever I have click/hover actions, I would subconsciously/automatically write something along the line of:</summary></entry><entry><title type="html">R3 Village - React Project</title><link href="http://localhost:4000/2017/08/12/r3_village_-_react_project/" rel="alternate" type="text/html" title="R3 Village - React Project" /><published>2017-08-12T06:09:22-04:00</published><updated>2017-08-12T06:09:22-04:00</updated><id>http://localhost:4000/2017/08/12/r3_village_-_react_project</id><content type="html" xml:base="http://localhost:4000/2017/08/12/r3_village_-_react_project/">&lt;p&gt;It’s been many months since I started at Flatiron.  One of my dreams was to gain the knowledge to create games for kids (without any ads). Through this final project, I have realized this dream! Though the games are not at all fancy, but it’s a first step in a long journey.  Here is how it all came together:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Goal&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;To teach kids about Reduce, Reuse &amp;amp; Recycle (R3) through games and learnings.  R3 Village is a virtual village where each villager have the options of getting new toy, replaying with old toy, recycling toy, trashing toy or learning thrugh a game without any toy.   Each action increases the pollution of the village and/or the happiness level of the villager.  Once the pollution level of the village reaches a certain level, background will go to total black.&lt;/p&gt;
+
+&lt;p&gt;No one can truly wins the game because pollution level increases anytime anyone get a new toy. Villagers can only survive in the long term if everyone takes part in R3 - Reduce, Reuse &amp;amp; Recycle. Rich or poor, when the home is destroyed, everyone is doomed.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Plan &amp;amp; Action&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;em&gt;Back-End: Rails API&lt;/em&gt;&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; User: has a room with 9 boxes where each box can store 1 or 0 toy
+    
+ Box: a box contains a toy. If the toy is recycled or trashed, box deactivated and won't show up in user's room
+    
+ Toy: has a name &amp;amp; link to where picture is stored
+    
+ Ingredients: various items such as plastic, electronic waste, trash, food trash to be used in recyle game
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;em&gt;Front-End: React&lt;/em&gt;&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; Routes: 
+  User - index, show, new
+  Games - 3 game route. one for each of the R action
+
+ Containers - container for each of the six routes
+
+ Components - presentational only, create as needed to support the display in containers
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;em&gt;The Middle - How React meets Rails&lt;/em&gt;&lt;/p&gt;
+
+    &lt;p&gt;State is managed through Redux.&lt;/p&gt;
+
+    &lt;p&gt;Containers read/write data to the database through dispatch actions passed in from the props.&lt;/p&gt;
+
+    &lt;p&gt;Each action fetches information from API server with various methods such as GET, POST &amp;amp; PATCH.&lt;/p&gt;
+
+    &lt;p&gt;The response is captured by the reducers and passed back to the components as props.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;Celebration&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Catch up on sleep :&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://media.giphy.com/media/l3M7smiKhkOcw/giphy.gif&quot; alt=&quot;sleep&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Future Plan&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;add better than primitive css&lt;/li&gt;
+  &lt;li&gt;add more games&lt;/li&gt;
+  &lt;li&gt;navigation&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;for now here is the link to the project - &lt;a href=&quot;https://github.com/hannah11361/R3-Village&quot;&gt;https://github.com/hannah11361/R3-Village&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;In case you haven’t noticed, R3 also stands for Rails, React &amp;amp; Redux:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://media.giphy.com/media/3oEduJnper1UdNqreg/giphy.gif&quot; alt=&quot;Thank you!&quot; /&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">It’s been many months since I started at Flatiron. One of my dreams was to gain the knowledge to create games for kids (without any ads). Through this final project, I have realized this dream! Though the games are not at all fancy, but it’s a first step in a long journey. Here is how it all came together:</summary></entry><entry><title type="html">Rails Project - with JQuery &amp;amp; JSON</title><link href="http://localhost:4000/2017/07/15/rails_project_-_with_jquery_and_json/" rel="alternate" type="text/html" title="Rails Project - with JQuery &amp; JSON" /><published>2017-07-15T07:50:03-04:00</published><updated>2017-07-15T07:50:03-04:00</updated><id>http://localhost:4000/2017/07/15/rails_project_-_with_jquery_and_json</id><content type="html" xml:base="http://localhost:4000/2017/07/15/rails_project_-_with_jquery_and_json/">&lt;p&gt;It has been an amazing journey to see how websites are born and transformed into functional applications that can do almost anything. We are bound by our own imaginations, or how much time you are willing to spend googling!&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;planning&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;render events index, show &amp;amp; user show page with json backend&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;event show page contains buttons to advance to next event, load statistics (numbers of people going/not going/maybe going), load associated itineraries &amp;amp; comments.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;action&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;customize Active Model Serializer for each model to fit the format desired for easier rendering&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class UserSerializer &amp;lt; ActiveModel::Serializer
+  attributes :id, :name, :email, :meetings, :events
+
+  #user organized meeting
+  def meetings
+  	object.meetings.map do |meeting|
+  		{id: meeting.id, attributes: {title: meeting.title}}
+  	end
+  end
+
+  #user particiating event
+  def events
+  	object.events.map do |event|
+  		{id: event.id, attributes: {title: event.title}}
+  	end
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;tackle one view page at a time, but plan ahead since some pages can share the same template. For example: list of events on event index page and user show page utilize the same handlebar template&lt;/li&gt;
+  &lt;li&gt;have fun with the ajax $.get and $.post&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;function loadItineraries(){
+	var event_id = parseInt($(&quot;.js-next&quot;).attr(&quot;data-id&quot;));
+	$.get(&quot;/events/&quot; + event_id +&quot;/itineraries.json&quot;, function(data){ 
+		var itinerariesHTML = HandlebarsTemplates['itineraries']({itineraries : data[&quot;data&quot;]});
+		$(&quot;.itineraries&quot;).html(itinerariesHTML);
+	});	
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;have fun using Javascript Model Objects:
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;//declare Comment object
+function Comment(id, event_id, email, comment){
+  this.id = id;
+  this.event = event_id;
+  this.comment = comment;
+  this.email = email;
+}
+// prototype function for Comment Object
+Comment.prototype.newComment = function() {
+  return (`&amp;lt;tr class=&quot;info&quot;&amp;gt;
+          &amp;lt;td&amp;gt;${this.comment}&amp;lt;/td&amp;gt;
+          &amp;lt;td&amp;gt;${this.email}&amp;lt;/td&amp;gt;
+          &amp;lt;td align=&quot;right&quot;&amp;gt;&amp;lt;a class=&quot;btn-info&quot; href=&quot;/events/${this.event_id}/comments/${this.id}&quot;&amp;gt;view&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;
+      `);
+}
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;wrap up&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;breath and celebrate!&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;some random tips:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;pictures&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;A picture is worth a thousand words.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://i.imgur.com/ID9yl2T.gif&quot; alt=&quot;pictures&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Place picture for rails application under :
+&lt;code class=&quot;highlighter-rouge&quot;&gt;#app/assets/images&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;use /assets/leave.jpg as url since rails knows images are contained in the images folder.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://blog.snappa.com/free-stock-photos/&quot;&gt;List of websites with free beautiful stock photos &lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://gifmaker.me/&quot;&gt;make moving photos (gif) on this site&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;handlebars template in rails&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;An example walk-thru is worth a hundred google searches:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://blog.botreetechnologies.com/using-handlebars-js-with-ruby-on-rails-bcddce004947&quot;&gt;a great site walked through stey by step how to incorporate handlebars template in rails&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;ready to load&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Buttons were not responding when clicked if the page is redirected from other pages, instead of using the ready function, use below instead:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$(document).on('turbolinks:load', function(){
+
+  	// any javascripts
+
+});
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;</content><author><name></name></author><summary type="html">It has been an amazing journey to see how websites are born and transformed into functional applications that can do almost anything. We are bound by our own imaginations, or how much time you are willing to spend googling!</summary></entry><entry><title type="html">Rails Project : Let’s Go</title><link href="http://localhost:4000/2017/06/24/rails_project_-_lets_go/" rel="alternate" type="text/html" title="Rails Project : Let's Go" /><published>2017-06-24T02:05:37-04:00</published><updated>2017-06-24T02:05:37-04:00</updated><id>http://localhost:4000/2017/06/24/rails_project_-_lets_go</id><content type="html" xml:base="http://localhost:4000/2017/06/24/rails_project_-_lets_go/">&lt;p&gt;Completing the portfolio project on rails marks a significant milestone on this journey of becoming a web developer.  As a fellow student mentioned, I no longer feel like a fake developer after completing this project.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Planning&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Summer is the season of gathering.  As friends plan out gathering events, I immediately clicked and wanted to build an app to organize events.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Features&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Users can organize events, add itineraries to the events, exchange comments and note their participation of “yes, maybe, no”.&lt;/li&gt;
+  &lt;li&gt;Guest has the luxury of browsing all events.&lt;/li&gt;
+  &lt;li&gt;There is a special feature that will displace events ranked by participations.  The most popular ones are the defined by the most “yes”.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Those sounded like fairly easy tasks with such limited features, but the models and controllers were already getting very complicated.  This really make me appreciate more on all the beautiful websites out there having much more complexities.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;View&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Once the main features are decided, I drew the views and layouts of each pages.  The main actions are:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;an event’s show page which shows the details of the event, list all the itineraries and comments associated.&lt;/li&gt;
+  &lt;li&gt;a user’s dashboard showing events as organizers &amp;amp; events as participants.&lt;/li&gt;
+  &lt;li&gt;a most-popular-events page featuring detail statistics of all participants’ responses&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Associations&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;With the end goals in sight, it was easy to draw the relationships between models and map out the associations:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;event
+    &lt;ul&gt;
+      &lt;li&gt;belongs to an organizer (user)&lt;/li&gt;
+      &lt;li&gt;has many participants (users) through the relationships with event_users, a join table recording an event, a participant &amp;amp; a participant’s response (yes, maybe, no)&lt;/li&gt;
+      &lt;li&gt;has many comments&lt;/li&gt;
+      &lt;li&gt;has many itineraries&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;user
+    &lt;ul&gt;
+      &lt;li&gt;has many meetings (as an organizer)&lt;/li&gt;
+      &lt;li&gt;has many itineraries through meetings as an organizer&lt;/li&gt;
+      &lt;li&gt;has many events (as a participant)&lt;/li&gt;
+      &lt;li&gt;has many comments&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;comment
+    &lt;ul&gt;
+      &lt;li&gt;belongs to an event&lt;/li&gt;
+      &lt;li&gt;belongs to a user&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;itinerary
+    &lt;ul&gt;
+      &lt;li&gt;belongs to an event&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;The Look&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Though the website obviously shows the developer behind it is an amateur, I actually spent 25% of time making it look reasonably eye-pleasing.  I utilized free css template found on this page:
+&lt;a href=&quot;https://bootswatch.com/simplex/&quot;&gt;Bootswatch&lt;/a&gt;
+I was obsessed with getting the buttons to fade out when a user clicks and responds and the little badge with number will update correctly, hours and hours on getting this feature to work.&lt;/p&gt;
+
+&lt;p&gt;here is how it looks before a user responds to an event:
+&lt;img src=&quot;http://i.imgur.com/g2QzDhG.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;after clicking yes&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://i.imgur.com/73r1CjX.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;changing the response to maybe&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://i.imgur.com/DJyRvqN.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Authentication&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Third Party login took many hours. And I gave up on getting google login to work, Facebook login with devise was much easier with the help of this website:
+&lt;a href=&quot;https://www.adrianprieto.com/how-to-setup-devise-and-omniauth-for-your-rails-application/&quot;&gt;www.adrianprieto.com&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;I struggled with invalid credential for 2 hours and finally determined that somehow the app wasn’t passing the Facebook app id and client secret correctly during callback.  I verified the codes in console was stored properly in ENV variables, but somehow it was still not working. I took a shortcut of just storing the key and secret directly in the config file. This is definitely not recommended for real website.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Naming Convention&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Many hours were spent on associations, but not because of complexities, rather the naming convention.  The join table was named as event_user (I should have just chosen one word in hindsight).  For the longest time, I wasn’t able to get the association to work no matter what variations I have tried.  After hours of googling and reading lessons again and again, it finally clicked that instead of finding the right way to name the plurals of table with two words, I can just add class_name:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class Event &amp;lt; ApplicationRecord
+  
+  belongs_to :organizer, :class_name =&amp;gt; &quot;User&quot;
+  
+  has_many :event_users, class_name: &quot;Event_User&quot;
+  has_many :participants, through: :event_users
+	
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Celebration&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;It’s done and I am proud &amp;amp; sleep deprived.&lt;/p&gt;
+
+&lt;p&gt;For your viewing pleasure: &lt;a href=&quot;https://github.com/hannah11361/io-let-us-go-rails-project&quot;&gt;https://github.com/hannah11361/io-let-us-go-rails-project&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">Completing the portfolio project on rails marks a significant milestone on this journey of becoming a web developer. As a fellow student mentioned, I no longer feel like a fake developer after completing this project.</summary></entry><entry><title type="html">Save the developer, save the world?</title><link href="http://localhost:4000/2017/03/29/save_the_developer_save_the_world/" rel="alternate" type="text/html" title="Save the developer, save the world?" /><published>2017-03-29T12:47:22-04:00</published><updated>2017-03-29T12:47:22-04:00</updated><id>http://localhost:4000/2017/03/29/save_the_developer_save_the_world</id><content type="html" xml:base="http://localhost:4000/2017/03/29/save_the_developer_save_the_world/">&lt;p&gt;Technology has certainly changed the world and will continue to do so.  On the way back from the hospital, I can’t forget the faces of my cousin-in-law, her husband and her mother, and I want to share a message with fellow students.&lt;/p&gt;
+
+&lt;p&gt;My cousin-in-law just had a successful kidney implant yesterday and everyone in the family is relived and grateful that she will be alive for more years.  She has been waiting for a compatible kidney for a while, I offered to test my compatibility as well, but that got ruled out immediately since our blood type is different.  Then I mentioned to her about a movie that I saw on Netflix, &lt;strong&gt;The Secret Rules of Modern Living: Algorithms&lt;/strong&gt;. It talked about how algorithm changed the world, and one of examples being matching living kidney donors.&lt;/p&gt;
+
+&lt;p&gt;For families who are waiting for organ donation, the thoughts are complicated. No one wants to wish ill on another family, but for an organ to become available, that usually means someone else’s family has lost a loved one.  In a way, families waiting for kidney transplant may call them lucky, because family member can be a living organ donor.  The issues come in when one family member wants to donate, but donor and donee’s vitals are not compatible.  Then comes an algorithm that can match donors.&lt;/p&gt;
+
+&lt;p&gt;For example, donor A wants to donate a kidney to A’s friend/family, A1. There is another donor B who wants to donate to B1. Both family wouldn’t be able to save their loved ones despite the best intent.  If they get connected via http://www.giveakidney.org/, computer algorithms can work the magic and match up the donors, thus A -&amp;gt; B1, while B -&amp;gt; A1.  Or in more complicated cases, the donation can involve more than 2 families.&lt;/p&gt;
+
+&lt;p&gt;It was lucky that her husband tested compatible and ended up being the donor.  She remembered my suggestion and asked her doctor, and indeed there is such a program, and it helped to get more transplants to needed people in the recent years.&lt;/p&gt;
+
+&lt;p&gt;If you are interested, check out the movie on Netflix: &lt;a href=&quot;http://www.imdb.com/title/tt5818010/plotsummary?ref_=tt_stry_pl&quot;&gt;The Secret Rules of Modern Living: Algorithms&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Algorithms can change the world, and we can make a difference as a developer!&lt;/p&gt;
+
+&lt;p&gt;On a lighter note, I wish everyone a healthy life and you may consider adding blood type O to your list of finding a significant half. They come in handy if anyone needs an organ/blood donor.  People with O blood type can save your life!!!&lt;/p&gt;</content><author><name></name></author><summary type="html">Technology has certainly changed the world and will continue to do so. On the way back from the hospital, I can’t forget the faces of my cousin-in-law, her husband and her mother, and I want to share a message with fellow students.</summary></entry><entry><title type="html">0 star rating</title><link href="http://localhost:4000/2017/03/22/0_star_rating/" rel="alternate" type="text/html" title="0 star rating" /><published>2017-03-22T01:54:46-04:00</published><updated>2017-03-22T01:54:46-04:00</updated><id>http://localhost:4000/2017/03/22/0_star_rating</id><content type="html" xml:base="http://localhost:4000/2017/03/22/0_star_rating/">&lt;p&gt;For starters, I am too nice to give anything 0 star rating, but I’ve always wonder why website can’t let user give 0 star?  &lt;!--more--&gt;It comes handy if there is something that truly deserves a 0 star.  For my sinatra project, I’ve build an app that let user rate movies.  Yes, rating movies are all over the web, from imdb, to netflix, to amazon, to everywhere movie is mentioned, but I haven’t found one that allows 0 star!!! Developers certainly are kind-hearted.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Gems:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;The app requires the usage of several skills which we learn throughout the courses leading up to the project: ActiveRecord, Sinatra, Rake to name a few. (Ironically, I’ve searched the web for a couple hours on how to clean up a database and reset the primary ID to start from 1… and I have just noticed in the Gemfile as I am typing this blog, there is a gem called “database_cleaner”. ) .  Nonetheless below is the fruits of my hours of research:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Movie.destroy_all
+ActiveRecord::Base.connection.execute(&quot;delete from sqlite_sequence where name = 'movies'&quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Substitute Movie for your model and movies for your table.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Database&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;three tables: users, movies and ratings
+relationship: a user has many ratings, a movie has many ratings, only one rating per movie per user allowed.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Web Scraping For Fun&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;I’ve utilized web scraping skills to conveniently scrape some movie information from www.imdb.com to populate the movie table.  I’ve noticed that all of imdb.com’s page that contains list of movies follow the exact same structure (as expected), so I can now scrape any imdb page that consists of list of movies, just by changing the link in the method.  Check out &lt;a href=&quot;https://github.com/hannah11361/sinatra-app-wikimovia&quot;&gt;the movie.rb and seeds.rb&lt;/a&gt; for details.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Pink and Purple Rule the World&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;BTW I’ve rated Beauty and the Beast 5/5 as shown below. It is so good that my friends went to see it twice with 3D.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://i.imgur.com/gt3AeVo.png&quot; alt=&quot;Wikimovia Screenshot&quot; /&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">For starters, I am too nice to give anything 0 star rating, but I’ve always wonder why website can’t let user give 0 star?</summary></entry><entry><title type="html">First Gem and K.I.S.S</title><link href="http://localhost:4000/2017/02/20/first_gem_and_k_i_s_s/" rel="alternate" type="text/html" title="First Gem and K.I.S.S" /><published>2017-02-20T23:48:10-05:00</published><updated>2017-02-20T23:48:10-05:00</updated><id>http://localhost:4000/2017/02/20/first_gem_and_k_i_s_s</id><content type="html" xml:base="http://localhost:4000/2017/02/20/first_gem_and_k_i_s_s/">&lt;p&gt;2/20/2017 will always have a special place in my life journey going forward, because it is the day that I published my first Gem!!! &lt;!--more--&gt;You can celebrate the occasion with me by typing below into your terminal:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ gem install countries_of_the_world
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;to run the app, type below:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ countries_of_the_world
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Below is the story of how to build a Gem, should you accept the mission to read on, you will find out what KISS is as well:&lt;/p&gt;
+
+&lt;h2 id=&quot;building-a-cli-data-gem-in-5-steps&quot;&gt;&lt;strong&gt;Building a CLI Data Gem in 5 Steps&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;1: Decide on a website to scrape information from:  travel the world is on my will-do-list, so I found a website that has basic information on each country conveniently located in one place - &lt;a href=&quot;http://www.worldbank.org/en/country&quot;&gt;worldbank&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;2: Download the files needed to build a gem by typing “bundle gem name_of_gem” in your terminal. Detailed instructions on how to use bundle to build a gem is located here - &lt;a href=&quot;https://bundler.io/v1.13/guides/creating_gem&quot;&gt;bundler - creating_gem&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;3: Code away!!!&lt;/p&gt;
+
+&lt;p&gt;hours and hours of coding later…&lt;/p&gt;
+
+&lt;p&gt;4: Once your codes are bulletproof, update the .gemspec file wherever that says “TODO” and most importantly the below line:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;spec.executables   &amp;lt;&amp;lt; 'countries_of_the_world'
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;This line tells Gem to run the executable file that is named countries_of_the_world located in the bin file when user starts your program. (This step took a lot of googling…… why can’t they put that in the instruction… )&lt;/p&gt;
+
+&lt;p&gt;5: Test the gem locally &amp;amp; then publish to &lt;a href=&quot;https://rubygems.org/&quot;&gt;rubygems.org&lt;/a&gt; be sure to sign up for an account on the website ahead of time&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ rake build
+$ gem install pkg/whatever_the_gem_created_in_rake_build
+$ countries_of_the_world (or whatever your executable is)
+
+$ rake release
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Done!&lt;/em&gt;&lt;/strong&gt; eat a cake, and then start writing blog, and/or record video of walk-thru&lt;/p&gt;
+
+&lt;p&gt;============================================================================================================&lt;/p&gt;
+
+&lt;h1 id=&quot;step-3-elaborated&quot;&gt;&lt;strong&gt;Step 3 elaborated:&lt;/strong&gt;&lt;/h1&gt;
+
+&lt;p&gt;Coding took the most amount of time in the whole project. And the principle I follow is KISS - Keep It Simple Stupid.&lt;/p&gt;
+
+&lt;h1 id=&quot;design&quot;&gt;Design&lt;/h1&gt;
+
+&lt;p&gt;&lt;strong&gt;Scraper Class&lt;/strong&gt; - scraps information from web pages and return hash or array to the caller&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Country Class&lt;/strong&gt; - retains and displays the information related to countries&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;CLI Class&lt;/strong&gt;  - controlling the overall i/o and the other two classes.  It calls scraper class to get info from web page, then tells country class to store and retrieve the information as needed by the user.&lt;/p&gt;
+
+&lt;p&gt;I originally wanted to keep the two classes completely separated, b/c that’s the point of OO. Each object is like a black-box, which has no awareness of the outside world, other than getting input and spitting outputs.&lt;/p&gt;
+
+&lt;p&gt;However, scraping the information for 181 countries along took a whole minute to complete in scraper class. If I kept that route and let country class take the information and build up the whole world containing all countries, it would take another minute. User may just quit my program if the app was idle for so long. So I decided to take a shortcut:&lt;/p&gt;
+
+&lt;p&gt;Scrape Class:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;scrape_page method&lt;/strong&gt; - scrapes only the name and url of each country and creates each country object as it scrapes.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;country_page method&lt;/strong&gt; - scrapes detail information of a country only if the user tells CLI class to display details of that country.  So the information is pulled on the fly and takes only a couple seconds to display.&lt;/p&gt;
+
+&lt;p&gt;Other than scrape_page method has crossed over the boundary of my original design, everything stayed as a simple and stupid (but elegant) black-box.&lt;/p&gt;
+
+&lt;h1 id=&quot;broken-links&quot;&gt;Broken Links&lt;/h1&gt;
+&lt;p&gt;It turned out that scraping is the easiest part of the coding process.  Dealing with broken links took most of time. And there were a lot of broken links for website with lots of information!!!  I had to google a lot to find out how to find out when a link is broken without me manually clicking over all the links:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    uri = URI.parse(url)
+    result = Net::HTTP.start(uri.host, uri.port) { |http| http.get(uri.path) }
+
+		if url.include?(&quot;capeverde&quot;) #cape verde page will return 302, but the link is actually broken
+			[nil,nil]
+		elsif result.code.to_i &amp;gt;= 200 &amp;amp;&amp;amp; result.code.to_i &amp;lt; 400
+			doc = Nokogiri::HTML(open(url))
+			[doc.css(&quot;li.come-level a.toggle strong&quot;).text,
+			doc.css(&quot;li.region a.toggle strong&quot;).text
+			]
+		else
+			[nil,nil]
+		end
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;When the response code from the Net::HTTP is anything lower than 200 or higher than 400, it’s a broken link. (Damn 404!!!)&lt;/p&gt;
+
+&lt;h1 id=&quot;celebrate&quot;&gt;Celebrate&lt;/h1&gt;
+&lt;p&gt;Now that you’ve reached the end of this blog post, feel free to celebrate a little too.  Here is link to my github for your viewing pleasure:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/hannah11361/countries-of-the-world-cli-app&quot;&gt;link to github&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;I noticed that the i/o for music library project used “colorize” gem, so I got obsessed with the colors too. (If you install my gem, you will see the welcome screen blinks!!! That was as easy as typing .blink after any string. Have fun! Get a cake and you can eat it too!&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://i.imgur.com/ClbtwNy.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">2/20/2017 will always have a special place in my life journey going forward, because it is the day that I published my first Gem!!!</summary></entry><entry><title type="html">Make Me As Tall as My Siblings!</title><link href="http://localhost:4000/2017/02/08/make_me_as_tall_as_my_siblings/" rel="alternate" type="text/html" title="Make Me As Tall as My Siblings!" /><published>2017-02-08T00:23:16-05:00</published><updated>2017-02-08T00:23:16-05:00</updated><id>http://localhost:4000/2017/02/08/make_me_as_tall_as_my_siblings</id><content type="html" xml:base="http://localhost:4000/2017/02/08/make_me_as_tall_as_my_siblings/">&lt;p&gt;Surfing the web is no longer the same after I have gone through the HTML and CSS portion of the program!  &lt;!--more--&gt;I often resize the browser on desktop computer just to see how/if the pages are responsive to changes. And whenever I browse pages that are not built for optimal view on mobile device, I would think about how it can be done.  It was really amazing to see how CSS can control the styles of a website.&lt;/p&gt;
+
+&lt;p&gt;While I was coding-along in the “Adding Responsive Feature” lab, I couldn’t help but to notice that the below scene doesn’t look right:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://i.imgur.com/UjrjfmS.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The two columns (siblings) don’t have the same height! I couldn’t get pass that, so I fired up google searching for ways to make the columns the same height!  It turns out that the height issues are very common when the contents of the siblings are not exactly the same.&lt;/p&gt;
+
+&lt;p&gt;I found many posts, a lot of suggesting using Javasript to get the height of the tallest sibling and set the others with the same height.  Those solutions are still beyond me since I am still a newbie. So I tried other ones that are easier to understand and doable for me.  One of them suggested using table display:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://i.imgur.com/OF8kMMW.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I tried it, and no matter how I constructed the &amp;lt;div&amp;gt; and CSS file, the two siblings won’t display with same height. Arg!!! I struggled a while and decided to move on.  I concluded that due to the contents were floating, this method doesn’t work.&lt;/p&gt;
+
+&lt;p&gt;Another post suggested a “cheap fix” with CSS file: making the padding-bottom for the siblings as many px as possible, and compensate with the same negative px on margin-bottom, then make the overflow on the parent container to be hidden.&lt;/p&gt;
+
+&lt;p&gt;CSS File:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;.row-2 {
+  overflow: hidden;
+}
+.cell-1, .cell-2 {
+
+  padding: 30px;
+  padding-bottom: 99999px;
+  margin-bottom: -99999px;
+  background: white;
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Setup in HTML side should include the two siblings in the same &amp;lt;div&amp;gt; with class “row-2”, and each sibling’s container would have class of “cell-1” and “cell-2” respectively. And it worked!!!&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://i.imgur.com/2XdH211.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Now there is still something that was bothering me: the gap between this row and the next row has disappearred!  This time I thought of something quick myself: putting in a placeholder &amp;lt;div&amp;gt; section with no content:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;.temp{
+    padding: 0px;
+  margin-bottom: 20px;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;And hooray!&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://i.imgur.com/0PsqQLX.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;It was probably a cheap fix for now before I learn more bulletproof way of fixing, but I still feel accomplished nonetheless.&lt;/p&gt;
+
+&lt;p&gt;Now, if there is a way to make me as tall as my sibling with a click of button, that’ll be fantastic!&lt;/p&gt;</content><author><name></name></author><summary type="html">Surfing the web is no longer the same after I have gone through the HTML and CSS portion of the program!</summary></entry><entry><title type="html">An Unexpected Journey</title><link href="http://localhost:4000/2017/02/02/an_unexpected_journey/" rel="alternate" type="text/html" title="An Unexpected Journey" /><published>2017-02-02T03:27:01-05:00</published><updated>2017-02-02T03:27:01-05:00</updated><id>http://localhost:4000/2017/02/02/an_unexpected_journey</id><content type="html" xml:base="http://localhost:4000/2017/02/02/an_unexpected_journey/">&lt;p&gt;I am on my third month of Maternity leave, so while I am not feeding/playing/changing diaper for newborn, feeding/playing 3-year-old toddler, feeding/caring for myself, I am taking online classes or reading books on coding. &lt;!--more--&gt;With the help from my mom in law and my husband, I could still fit into the busy schedule to catch Dr. Strange, Rogue One, and the new season of Sherlock! Who needs 6 hour of sleep when we can get lost in a galaxy far far away or in 221B Baker Street or in FizzBuzz?&lt;/p&gt;
+
+&lt;p&gt;Looking back at the roads or the roads not taken, I am glad where I am now. Though, that means abandoning the 10 years of experiences in the field of tax accounting and venture into the field of developer.  It has been an ironic and fun journey, my parents insisted that I should major in Accounting, but I went for the “cool-er” degree, Applied Physics, which required a computer science or a math minor.  After taking the intro Java class, I was hooked on programming! I decided to dual major in CS as well.  With a semester to study abroad, and two classes overlapping between the two majors, I planned everything almost perfectly aiming to graduate with only 3.5 years actual studying time, but things never go as planned.&lt;/p&gt;
+
+&lt;p&gt;The experiment (involving spider) for senior class didn’t go well and one of the class no longer qualify as fulfilling both majors. I had to decide for myself to abandon one major, I chose the “cool” one over the “fun” one. I told myself, coding is fun, and making something fun into a career may not be a fun move down the road.  Somehow down the road I ended up in the world of accounting and went back to school for another degree in accounting, the “practical” major.&lt;/p&gt;
+
+&lt;p&gt;Accounting, like many other fields, have been revolutionized by technology dramatically in the past decade: from the rise of personal tax software such as Turbo Tax to mega-rich-companies integrating technologies collecting tax and finance data on the fly.  I was fortunate enough to have witnessed firsthand multi-million contracts between big investment company and big-4 accounting firm embracing technology, seamlessly integrating data to tax reporting software and producing reports within a few hours instead of thousands of hours. So, I find myself again at a cross road, to stay in the practical and safe world of accounting or to venture into something unknown.&lt;/p&gt;
+
+&lt;p&gt;My choice, as evidential by this blog is to take the path that I didn’t take years ago, and here I am typing away my first blog.&lt;/p&gt;
+
+&lt;p&gt;Cheers to 2017!&lt;/p&gt;</content><author><name></name></author><summary type="html">I am on my third month of Maternity leave, so while I am not feeding/playing/changing diaper for newborn, feeding/playing 3-year-old toddler, feeding/caring for myself, I am taking online classes or reading books on coding.</summary></entry></feed>
